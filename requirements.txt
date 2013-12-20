@@ -1,0 +1,4 @@
+ipdb
+testify
+selenium
+flask

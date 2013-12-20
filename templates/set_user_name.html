@@ -1,0 +1,11 @@
+<html>
+    <h1></h1>
+
+    <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script>
+        var setUserName = function(userName) {
+            $('h1').text(userName);
+        };
+        setUserName("{{ user_name }}");
+    </script>
+</html>

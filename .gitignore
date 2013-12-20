@@ -1,0 +1,6 @@
+*.iml
+example.db
+test_venv
+.idea
+*.pyc
+
