@@ -18,6 +18,9 @@ tests: flakes test_venv
 test_signup: flakes test_venv
 	bash -c "source test_venv/bin/activate && testify tests.test_signup"
 
+test_rosi: flakes test_venv
+	bash -c "source test_venv/bin/activate && testify tests.test_rosi_login"
+
 serve_signup: flakes test_venv
 	bash -c "source test_venv/bin/activate && python selenium_examples/signup.py"
 

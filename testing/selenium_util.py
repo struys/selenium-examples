@@ -5,7 +5,7 @@ from selenium.webdriver.remote import webdriver
 class SlowWebdriver(webdriver.WebDriver):
 
 	def execute(self, driver_command, params=None):
-		time.sleep(1)
+		time.sleep(0.5)
 		return super(SlowWebdriver, self).execute(driver_command, params)
 
 def with_driver(*desired_capabilities):
