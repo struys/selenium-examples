@@ -3,4 +3,4 @@ example.db
 test_venv
 .idea
 *.pyc
-
+*.egg-info

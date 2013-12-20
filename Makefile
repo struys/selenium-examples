@@ -42,6 +42,5 @@ delete_fixtures:
 
 clean: delete_fixtures
 	rm -rf test_venv
-
 	find . -iname '*.pyc' -delete
 

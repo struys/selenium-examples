@@ -30,12 +30,15 @@ class DB(object):
 			SELECT * from user where user.id = ?
 		""", (user_id,))
 		t = cursor.fetchone()
-		return {
-			'id': t[0],
-			'name': t[1],
-			'email': t[2],
-			'password': t[2],
-		}
+		return self.format_user_tuple(t)
+
+	@with_cursor
+	def get_user_by_email(self, cursor, email):
+		cursor.execute("""
+			SELECT * from user where user.email = ?
+		""", (email,))
+		t = cursor.fetchone()
+		return self.format_user_tuple(t)
 
 	@with_cursor
 	def get_users(self, cursor):
@@ -63,11 +66,19 @@ class DB(object):
 			)
 		""")
 
+	@staticmethod
+	def format_user_tuple(t):
+		return {
+			'id': t[0],
+			'name': t[1],
+			'email': t[2],
+			'password': t[3],
+		}
+
 class View(object):
 
 	def render_template(self, name, **args):
 		return render_template(name, **args)
-
 
 db = DB()
 view = View()

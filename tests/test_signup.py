@@ -2,6 +2,7 @@ import testify as T
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 
 from testing.selenium_util import with_driver
+from selenium_examples import app
 
 class TestApplication(T.TestCase):
 
@@ -25,3 +26,6 @@ class TestApplication(T.TestCase):
 			"User is Signed up!"
 		)
 
+		user = app.db.get_user_by_email('kstruys@yelp.com')
+		T.assert_equal(user['name'], 'Ken')
+		T.assert_equal(user['password'], 'mypassword')
