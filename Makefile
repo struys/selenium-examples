@@ -5,15 +5,19 @@ all: flakes
 flakes:
 	pyflakes tests setup.py
 
-test_venv: requirements.txt
+test_venv: requirements.txt node_requirements.txt
 	rm -rf test_venv
+	rm -rf node_env
 	virtualenv test_venv
+
 	bash -c 'source test_venv/bin/activate && \
 		pip install -r requirements.txt && \
-		pip install -e .'
+		pip install -e . && \
+		nodeenv node_env --requirement=node_requirements.txt && \
+		bower install'
 
-tests: flakes test_venv
-	bash -c "source test_venv/bin/activate && testify tests"
+test_user_name: flakes test_venv
+	bash -c "source test_venv/bin/activate && testify tests.test_set_user_name"
 
 test_signup: flakes test_venv
 	bash -c "source test_venv/bin/activate && testify tests.test_signup"
@@ -27,7 +31,7 @@ serve_signup: flakes test_venv
 serve: flakes test_venv
 	bash -c "source test_venv/bin/activate && python selenium_examples/set_user_name.py"
 
-start_selenium:
+selenium_start:
 	bash -c "java -jar bin/selenium-server-standalone-2.35.0.jar \
 		-Dwebdriver.chrome.driver=bin/chromedriver"
 
@@ -42,5 +46,6 @@ delete_fixtures:
 
 clean: delete_fixtures
 	rm -rf test_venv
+	rm -rf node_env
 	find . -iname '*.pyc' -delete
 

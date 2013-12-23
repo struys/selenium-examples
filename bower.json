@@ -1,0 +1,13 @@
+{
+	"name": "Selenium Presentation",
+	"version": "0.0.1",
+	"description": "Selenium Presentation",
+	"authors": [
+		"Ken Struys",
+		"Anthony Sottile"
+	],
+	"dependencies": {
+		"jquery": "1.9",
+		"reveal.js": "2.6.1"
+	}
+}

@@ -1,0 +1,4 @@
+#!/bin/bash
+source test_venv/bin/activate
+. node_env/bin/activate
+PATH=$PATH:node_env/bin

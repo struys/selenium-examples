@@ -1,0 +1,273 @@
+<html>
+    <head>
+
+        <link rel="stylesheet" href="bower_components/reveal.js/css/reveal.min.css">
+        <link rel="stylesheet" href="bower_components/reveal.js/css/theme/sky.css">
+        <link rel="stylesheet" href="assets/presentation.css">
+    </head>
+
+    <body>
+        <div class="reveal">
+            <div class="slides">
+                <section>
+                    <h1>Integration Testing The Web</h1>
+                    <h3>An Introduction to Selenium</h3>
+                </section>
+                <section>
+                    <h2>Introduction To Testing</h2>
+                </section>
+                <section>
+                    <h2>Unit Testing</h2>
+                    <ul>
+                        <li>
+                            Smallest testable parts of an application are individually and independently scrutinized for proper operation
+                        </li>
+                        <li>
+                            Only test those characteristics that are vital to the unit under test
+                        </li>
+                    </ul>
+                </section>
+                <section>
+                    <pre>
+                        <code>
+    def render_homepage(user_id):
+        user_info = get_user(user_id):
+
+        return """
+            &lt;html&gt;
+            &lt;h1&gt;%s&lt;/h1&gt;
+            &lt;/html&gt;
+        """.format(user_info['name'])
+                        </code>
+                    </pre>
+                    <pre>
+                        <code>
+    def unit_test_render_homepage():
+        user_info = make_user(name="Bob")
+        homepage = render_homepage(user_info['id'])
+
+        assert user_info['name'] in homepage
+        assert is_valid_html(homepage)
+                        </code>
+                    </pre>
+                </section>
+                <section>
+                    <h3>We made no assertions about the string "Bob"</h3>
+
+                    <pre>
+                        <code>
+    def unit_test_render_homepage():
+        user_info = make_user(name="Bob")
+        homepage = render_homepage(user_info['id'])
+
+        assert user_info['name'] in homepage
+        assert is_valid_html(homepage)
+                        </code>
+                    </pre>
+                    <ul>
+                        <li>That would be testing a different unit</li>
+                        <li>That unit should already be covered by get_user/make_user tests</li>
+                    </ul>
+                </section>
+                <section>
+                    <pre>
+                        <code>
+    def render_homepage(user_id):
+        user_info = get_user(user_id):
+
+        return """
+            &lt;html&gt;
+            &lt;h1&gt;%s&lt;/h1&gt;
+            &lt;/html&gt;
+        """.format(user_info['name'])
+                        </code>
+                    </pre>
+                    <ul>
+                        <li>Test we connected the result of get_user with html and returned it</li>
+                    </ul>
+                </section>
+                <section>
+                    <h2>We Made A lot of Assumptions</h2>
+                    <ul>
+                        <li>Everything else is well tested</li>
+                        <li>We're using existing interfaces correctly</li>
+                    </ul>
+                </section>
+                <section>
+                    <h2>Integration Testing</h2>
+                    <ul>
+                        <li>
+                            Units of an application are combined and tested as a group
+                        </li>
+                        <li>
+                            Failed integration tests often reveal missing unit tests
+                        </li>
+                    </ul>
+                </section>
+                <section>
+                    <h2>Levels of Integration</h2>
+                    <ol class="stack-table">
+                        <li>Client Browser</li>
+                        <li>Client OS</li>
+                        <li>Network</li>
+                        <li>Webserver</li>
+                        <li>Application</li>
+                        <li>Database</li>
+                        <li>Server OS</li>
+                    </ol>
+                </section>
+                <section>
+                    <pre>
+                        <code>
+    def integration_test_render_homepage():
+        connection = HTTPConnection()
+        connection.do_signup_flow(name="Bob")
+
+        assert connection.user_logged_in()
+        assert connection.current_page == 'homepage'
+        assert "Bob" in connection.get_html()
+                        </code>
+                    </pre>
+                </section>
+                <section>
+                    <h2>Integration Testing</h2>
+                    <ul>
+                        <li>More high level</li>
+                        <li>Testing in industry isn't a perfect science (CSC410 is science)</li>
+                        <li>Use your best judgement when writing code</li>
+                        <li>What are the corner cases that might break?</li>
+                    </ul>
+                </section>
+                <section>
+                    <h2>A Note on JavaScript Testing</h2>
+                    <ul>
+                        <li>Just another programming language, nothing special</li>
+                        <li>JavaScript can be tested</li>
+                        <pre>
+                            <code>
+    var setUserName = function(userName) {
+        $('title').text(userName);
+    };
+
+    var testSetUserName = function() {
+        var name = "Bob";
+        setUserName(name);
+        assertEqual($('title').text, name);
+    };
+                            </code>
+                        </pre>
+                        <li>Responsible developers test their JavaScript</li>
+                    </ul>
+                </section>
+                <section>
+                    <h2>How about this?...</h2>
+                    <pre>
+                        <code>
+    def render_homepage(user_id):
+        user_info = get_user(user_id):
+
+        return """
+            &lt;html&gt;
+                &lt;h1&gt;&lt;/h1&gt;
+                &lt;script&gt;
+                    var setUserName = function(name) {
+                        $('h1').text(name);
+                    }
+                    setUserName("{0}");
+                &lt;/script&gt;
+            &lt;/html&gt;
+        """.format(user_info['name'])
+                        </code>
+                    </pre>
+                </section>
+                <section>
+                    <h2>We shouldn't make assumptions about the browser</h2>
+                    <ul>
+                        <li>We want to test every browser</li>
+                        <li>We probably want to test every OS</li>
+                    </ul>
+                </section>
+                <section>
+                    <h2>Quality Assurance Teams (QA)</h2>
+                    <ul>
+                        <li>QA Teams "execute" Test Plans</li>
+                        <ul>
+                            Execute the following in IE6,7,8, Chrome, Firefox, Safari:
+                            <ul>
+                                <li>Signup for the site</li>
+                                <li>Homepage should be loaded after signup</li>
+                                <li>Your name should appear in the title</li>
+                            </ul>
+                        </ul>
+                    </ul>
+                </section>
+                <section>
+                    <h2>Manual QA Doesn't Scale</h2>
+                    <ul>
+                        <li>Your QA teams gets huge</li>
+                        <li>Combinatorial explosion of test plans to perform</li>
+                        <li>To release code, you have to wait on the QA team</li>
+                        <li>Release cycles often in the 3, 6, 12 month range</li>
+                        <li>Agile software development doesn’t mesh well with QA</li>
+                    </ul>
+                </section>
+                <section>
+                    <h2>Yelp Doesn't Have a QA Team</h2>
+                    <ul>
+                        <li>&gt; 150 Developers creating new features everyday</li>
+                        <li>~3 Releases a day</li>
+                        <li>We’ve automated the entire QA process with Selenium</li>
+                        <li>Trust Developers to be responsible</li>
+                    </ul>
+                </section>
+                <section>
+                    <h2>What the heck is Selenium?</h2>
+                </section>
+                <section>
+                    <h2>What the heck is Selenium?</h2>
+                    <ul>
+                        <li>Selenium is a portable software testing framework for web applications</li>
+                        <li>Mimics user behavior similar to a QA team</li>
+                    </ul>
+                </section>
+                <section>
+                    <h2>Let's Selenium Test This</h2>
+                    <pre>
+                        <code>
+    def render_homepage(user_id):
+        user_info = get_user(user_id):
+
+        return """
+            &lt;html&gt;
+                &lt;h1&gt;&lt;/h1&gt;
+                &lt;script&gt;
+                    var setUserName = function(name) {
+                        $('h1').text(name);
+                    }
+                    setUserName("{0}");
+                &lt;/script&gt;
+            &lt;/html&gt;
+        """.format(user_info['name'])
+                        </code>
+                    </pre>
+                </section>
+                <section>
+                    <h2>Other Selenium Usage</h2>
+                    <ul>
+                        <li>GETS and POSTS</li>
+                        <li>Can navigate from page to page</li>
+                        <li>Can navigate from page to page</li>
+                    </ul>
+                </section>
+
+            </div>
+        </div>
+
+        <script src="bower_components/jquery/jquery.min.js"></script>
+        <script src="bower_components/reveal.js/js/reveal.min.js"></script>
+        <script type="text/javascript">
+            Reveal.initialize({history: true});
+        </script>
+    </body>
+
+</html>

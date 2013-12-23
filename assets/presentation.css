@@ -1,0 +1,15 @@
+ol.stack-table {
+    border: 1px solid #333;
+
+}
+
+.stack-table li {
+    list-style-type: none;
+    padding:0.5em;
+    text-align: center;
+    border-bottom: 1px solid #333;
+}
+
+.stack-table li:last-child {
+    border-bottom: none;
+}

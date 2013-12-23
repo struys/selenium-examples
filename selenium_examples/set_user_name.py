@@ -1,4 +1,3 @@
-
 from selenium_examples import app
 
 @app.app.route('/')

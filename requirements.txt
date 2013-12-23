@@ -2,3 +2,4 @@ ipdb
 testify
 selenium
 flask
+nodeenv

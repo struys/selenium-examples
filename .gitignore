@@ -4,3 +4,5 @@ test_venv
 .idea
 *.pyc
 *.egg-info
+bower_components
+node_env
