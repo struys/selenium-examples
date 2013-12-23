@@ -1,15 +1,13 @@
 ol.stack-table {
-    border: 1px solid #333;
-
-}
+  border: 1px solid #333333;
+  background-color: #f5f5f1;
+  border-radius: 4px; }
 
 .stack-table li {
-    list-style-type: none;
-    padding:0.5em;
-    text-align: center;
-    border-bottom: 1px solid #333;
-}
+  list-style-type: none;
+  padding: 0.5em;
+  text-align: center;
+  border-bottom: 1px solid #333333; }
 
 .stack-table li:last-child {
-    border-bottom: none;
-}
+  border-bottom: none; }

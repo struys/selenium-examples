@@ -3,3 +3,4 @@ testify
 selenium
 flask
 nodeenv
+pyscss

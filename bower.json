@@ -8,6 +8,7 @@
 	],
 	"dependencies": {
 		"jquery": "1.9",
-		"reveal.js": "2.6.1"
+		"reveal.js": "2.6.1",
+		"highlightjs": "7.5.0"
 	}
 }

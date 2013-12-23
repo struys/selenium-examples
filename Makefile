@@ -16,6 +16,9 @@ test_venv: requirements.txt node_requirements.txt
 		nodeenv node_env --requirement=node_requirements.txt && \
 		bower install'
 
+scss: test_venv
+	bash -c "source test_venv/bin/activate && cd assets && node-sass yelp_reveal.scss && node-sass presentation.scss"
+
 test_user_name: flakes test_venv
 	bash -c "source test_venv/bin/activate && testify tests.test_set_user_name"
 
