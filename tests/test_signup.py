@@ -17,8 +17,8 @@ class TestApplication(T.TestCase):
 		signup_form = driver.find_element_by_css_selector('.signup-form')
 
 		signup_form.find_element_by_name('name').send_keys('Ken')
-		signup_form.find_element_by_name('email').send_keys('kstruys@yelp.com')
-		signup_form.find_element_by_name('password').send_keys('mypassword')
+		signup_form.find_element_by_name('email').send_keys('some_user@yelp.com')
+		signup_form.find_element_by_name('password').send_keys('a_password')
 
 		signup_form.find_element_by_tag_name('button').click()
 
@@ -27,6 +27,6 @@ class TestApplication(T.TestCase):
 			"User is Signed up!"
 		)
 
-		user = app.db.get_user_by_email('kstruys@yelp.com')
+		user = app.db.get_user_by_email('some_user@yelp.com')
 		T.assert_equal(user['name'], 'Ken')
-		T.assert_equal(user['password'], 'mypassword')
+		T.assert_equal(user['password'], 'a_password')
