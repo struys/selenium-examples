@@ -13,4 +13,7 @@ class TestApplication(T.TestCase):
 	)
 	def test_set_user_name(self, driver):
 		driver.get("http://localhost:5000")
-		T.assert_equal(driver.find_element_by_tag_name('h1').text, 'Bob')
+
+		header_element = driver.find_element_by_tag_name('h1')
+
+		T.assert_equal(header_element.text, 'Bob')
