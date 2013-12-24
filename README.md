@@ -25,7 +25,7 @@ Start the Selenium Server
 make selenium_start
 ```
 
-Create the test Database/Fixures
+Create the test Database/Fixtures
 
 ```
 make create_fixtures
