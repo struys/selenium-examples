@@ -5,6 +5,7 @@ from testing.selenium_util import with_driver
 from selenium_examples import app
 
 class TestApplication(T.TestCase):
+	"""Test A Simple Signup Flow"""
 
 	@with_driver(
 		DesiredCapabilities.FIREFOX,

@@ -24,7 +24,7 @@ body {
   margin: 0 0 20px 0;
   color: #c41200;
   font-family: 'League Gothic', Impact, sans-serif;
-  line-height: 0.9em;
+  line-height: 1em;
   letter-spacing: 0.02em;
   text-transform: uppercase;
   text-shadow: none; }
@@ -139,3 +139,6 @@ pre code {
 .reveal .controls {
   left: 10px;
   right: auto; }
+
+.reveal li {
+  padding-bottom: 0.5em; }

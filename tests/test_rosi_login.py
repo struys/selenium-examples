@@ -5,6 +5,7 @@ from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from testing.selenium_util import with_driver
 
 class TestRosi(T.TestCase):
+	"""Test that a Student has graduated from U of T Computer Science"""
 
 	@T.setup
 	def get_rosi_pin(self):

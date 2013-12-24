@@ -7,6 +7,7 @@ $backgroundColor: #fff;
 $headingTextShadow: none;
 $selectionBackgroundColor: #c41200;
 $linkColor: #c41200;
+$headingLineHeight: 1em;
 
 @import "../bower_components/reveal.js/css/theme/template/theme";
 
@@ -33,4 +34,8 @@ pre code {
 .reveal .controls {
   left: 10px;
   right: auto;
+}
+
+.reveal li {
+  padding-bottom: 0.5em;
 }

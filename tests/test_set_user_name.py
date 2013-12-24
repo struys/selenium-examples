@@ -5,6 +5,7 @@ from testing.selenium_util import with_driver
 
 
 class TestApplication(T.TestCase):
+	"""Test that JavaScript correctly sets a username on the homepage page"""
 
 	@with_driver(
 		DesiredCapabilities.FIREFOX,

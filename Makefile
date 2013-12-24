@@ -14,6 +14,7 @@ test_venv: requirements.txt node_requirements.txt
 		pip install -r requirements.txt && \
 		pip install -e . && \
 		nodeenv node_env --requirement=node_requirements.txt && \
+		source activate && \
 		bower install'
 
 scss: test_venv
