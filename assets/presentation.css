@@ -1,7 +1,8 @@
 ol.stack-table {
   border: 1px solid #333333;
   background-color: #f5f5f1;
-  border-radius: 4px; }
+  border-radius: 4px;
+  margin: 0px; }
 
 .stack-table li {
   list-style-type: none;

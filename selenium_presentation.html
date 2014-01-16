@@ -17,6 +17,16 @@
         <div class="reveal">
             <div class="slides">
                 <section>
+                    <h2>Yelp Dataset Challenge</h2>
+                    <ul>
+                        <li>Generous Data set released (thousands of reviews, businesses, users, checkins)</li>
+                        <li>How well can you guess a reviews rating from its text alone?</li>
+                        <li>Can you figure out which business a user is likely to review next?</li>
+                        <li>Opportunity to win $5,000</li>
+                        <li><a href="http://www.yelp.com/dataset_challenge/">yelp.com/dataset_challenge/</a></li>
+                    </ul>
+                </section>
+                <section>
                     <h1>Integration Testing The Web</h1>
                     <h3>An Introduction to Selenium</h3>
                 </section>
@@ -25,7 +35,7 @@
                     <ul>
                         <li>Web Dev Tech Lead</li>
                         <li>Frontend for yelp.com</li>
-                        <li>Also a lot of web infrastructure</li>
+                        <li>Web Infrastructure</li>
                         <li>2009 UofT CS Grad</li>
                         <li>@kenstruys</li>
                     </ul>
@@ -154,7 +164,7 @@
                         <h2>Integration Testing</h2>
                         <ul>
                             <li>More high level</li>
-                            <li>Testing in industry isn't a perfect science (CSC410 is science)</li>
+                            <li>Industry testing isn't science (CSC410 is science)</li>
                             <li>Use your best judgement when writing code</li>
                             <li>What are the corner cases that might break?</li>
                         </ul>
@@ -182,7 +192,7 @@
                     </ul>
                 </section>
                 <section>
-                    <h2>How about this?...</h2>
+                    <h2>How about this?</h2>
                     <pre>
                         <code>
     def render_homepage(user_id):
@@ -201,12 +211,13 @@
         """.format(user_info['name'])
                         </code>
                     </pre>
-                    <ul>Python & JavaScript Integration</ul>
+                    <p>Python & JavaScript Integration</p>
                 </section>
                 <section>
-                    <h2>Don't make assumptions about the browser</h2>
+                    <h2>Test all user environments</h2>
                     <ul>
                         <li>We want to test every browser</li>
+                        <li>We want to test every feature</li>
                         <li>We probably want to test every OS</li>
                     </ul>
                 </section>
@@ -219,7 +230,7 @@
                         <ul>
                             <li>"execute" Test Plans</li>
                             <ul>
-                                Execute the following in IE6,7,8, Chrome, Firefox, Safari:
+                                <li>Execute the following in IE6, 7, 8, Chrome, Firefox, Safari:</li>
                                 <ol>
                                     <li>Signup for the site</li>
                                     <li>Homepage should be loaded after signup</li>
@@ -257,13 +268,24 @@
                         <ul>
                             <li>Portable software testing framework for web applications</li>
                             <li>Mimics user behavior similar to a QA team</li>
-                            <li>Available in Java, Ruby, Python, C#, etc.</li>
-                            <li>Write tests that control any browser/OS</li>
+                            <li>Libraries in Java, Ruby, Python, C#, etc.</li>
+                            <li>Write tests that operate on any browser/OS</li>
                         </ul>
                     </section>
                     <section>
                         <h2>Architecture</h2>
-                        <ul>TODO INSERT DIAGRAM</ul>
+                        <ol class="stack-table">
+                            <li class="test-runner">Test Runner</li>
+                            <li class="selenium-server">Selenium Server</li>
+                            <li>
+                                <div>Browsers</div>
+                                <img class="browser firefox" alt="Firefox" src="assets/firefox/firefox_128x128.png">
+                                <img class="browser chrome" alt="Chrome" src="assets/chrome/chrome_128x128.png">
+                                <img class="browser ie" alt="Internet Explorer" src="assets/internet-explorer/internet-explorer_128x128.png">
+                            </li>
+                            <li class="app">App Server</li>
+                            <li class="database">Database</li>
+                        </ol>
                     </section>
                     <section>
                         <h2>WebDriver + WebElement</h2>
@@ -271,9 +293,8 @@
                     <section>
                         <h2>WebDriver</h2>
                         <p>Controls a browser</p>
-                        <code>
-                            <pre>
-
+                        <pre>
+                            <code>
     @with_driver(DesiredCapabilities.FIREFOX)
     def test_set_user_name(self, driver):
         driver.get("http://yelp.com")
@@ -281,23 +302,22 @@
         driver.refresh()
         driver.get_screenshot_as_png()
         element = driver.find_element_by_css_selector('.foo .bar')
-                            </pre>
-                        </code>
+                            </code>
+                        </pre>
                     </section>
                     <section>
                         <h2>WebElement</h2>
                         <p>Controls an element on a page</p>
-                        <code>
-                            <pre>
-
+                        <pre>
+                            <code>
     element = driver.find_element_by_css_selector('.foo .bar')
 
     element.click()
     element.send_keys('foo bar')
 
     sub_element = element.find_element_by_id('#subelement')
-                            </pre>
-                        </code>
+                            </code>
+                        </pre>
                     </section>
                     <section>
                         <h2>Let's Selenium Test This</h2>
@@ -321,7 +341,7 @@
                         </pre>
                     </section>
                     <section>
-                        <h2>Selenium Can handle a lot more</h2>
+                        <h2>Selenium Can do a lot more</h2>
                         <ul>
                             <li>GETS and POSTS</li>
                             <li>Navigation from page to page</li>
@@ -341,8 +361,8 @@
                     <ul>
                         <li><a href="https://pypi.python.org/pypi/selenium">Python Library</a> is reasonable (Java/Ruby is better)</li>
                         <li>We're working on open sourcing some great improvements</li>
-                        <li>Follow <a href="https://github.com/Yelp">https://github.com/Yelp</a></li>
-                        <li>Demos will get you started <a href="https://github.com/struys/selenium-examples">https://github.com/struys/selenium-examples</a></li>
+                        <li>Follow <a href="https://github.com/Yelp">github.com/Yelp</a></li>
+                        <li>Demos will get you started <a href="https://github.com/struys/selenium-examples">github.com/struys/selenium-examples</a></li>
                         <li>Contact me if you get stuck <a href="http://twitter.com/kenstruys">@kenstruys</a></li>
                     </ul>
                 </section>
@@ -350,7 +370,7 @@
                     <h2>I want to work with passionate people</h2>
                     <p>We're hiring</p>
                     <ul>
-                        <a href="http://yelp.com/careers">http://yelp.com/careers</a>
+                        <a href="http://yelp.com/careers">yelp.com/careers</a>
                     </ul>
                 </section>
             </div>
