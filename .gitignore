@@ -8,3 +8,4 @@ test_venv
 bower_components
 node_env
 node_modules
+assets/*.css

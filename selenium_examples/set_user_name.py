@@ -1,16 +1,14 @@
-from selenium_examples import app
 
-@app.app.route('/')
-def homepage():
-	return render_homepage(1)
+def register(app):
 
-def render_homepage(user_id):
-	user_info = app.db.get_user(user_id)
+    @app.app.route('/')
+    def homepage():
+        return render_homepage(1)
 
-	return app.view.render_template(
-		'set_user_name.html',
-		user_name=user_info['name']
-	)
+    def render_homepage(user_id):
+        user_info = app.db.get_user(user_id)
 
-if __name__ == '__main__':
-	app.app.run(debug=True,)
+        return app.view.render_template(
+            'set_user_name.html',
+            user_name=user_info['name']
+        )

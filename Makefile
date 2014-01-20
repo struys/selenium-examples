@@ -30,14 +30,11 @@ test_signup: flakes test_venv
 test_rosi: flakes test_venv
 	bash -c "source test_venv/bin/activate && testify tests.test_rosi_login"
 
-serve_signup: flakes test_venv
-	bash -c "source test_venv/bin/activate && python selenium_examples/signup.py"
-
 serve: flakes test_venv
-	bash -c "source test_venv/bin/activate && python selenium_examples/set_user_name.py"
+	bash -c "source test_venv/bin/activate && python selenium_examples/main.py"
 
 selenium_start:
-	bash -c "java -jar bin/selenium-server-standalone-2.35.0.jar \
+	bash -c "java -jar bin/selenium-server-standalone-2.39.0.jar \
 		-Dwebdriver.chrome.driver=bin/chromedriver"
 
 create_fixtures: test_venv
