@@ -19,7 +19,7 @@
                 <section>
                     <h2>Yelp Dataset Challenge</h2>
                     <ul>
-                        <li>Generous Data set released (thousands of reviews, businesses, users, checkins)</li>
+                        <li>Thousands of reviews, businesses, users, checkins</li>
                         <li>How well can you guess a reviews rating from its text alone?</li>
                         <li>Can you figure out which business a user is likely to review next?</li>
                         <li>Opportunity to win $5,000</li>
@@ -33,15 +33,18 @@
                 <section>
                     <h2>About me: Ken Struys</h2>
                     <ul>
+                        <li>2009 UofT CS Grad</li>
                         <li>Web Dev Tech Lead</li>
                         <li>Frontend for yelp.com</li>
                         <li>Web Infrastructure</li>
-                        <li>2009 UofT CS Grad</li>
-                        <li>@kenstruys</li>
                     </ul>
                 </section>
                 <section>
                     <h2>Let's Talk Test Theory</h2>
+                </section>
+                <section>
+                    <h2>Application Graph</h2>
+                    <img src="assets/simple-nodes.jpg">
                 </section>
                 <section class="stack">
                     <section>
@@ -56,26 +59,33 @@
                         </ul>
                     </section>
                     <section>
-                        <pre>
-                            <code>
+                        <h2>Units of an Application</h2>
+                        <img src="assets/simple-nodes.jpg">
+                    </section>
+                    <section>
+                        <h2>Python Example</h2>
+                    </section>
+                    <section>
+<pre><code>
         def render_homepage(user_id):
             user_info = get_user(user_id):
 
-            return """
+            homepage_html =  """
                 &lt;html&gt;
-                &lt;h1&gt;{0}&lt;/h1&gt;
+                    &lt;body&gt;
+                        &lt;h1&gt;{0}&lt;/h1&gt;
+                    &lt;/body&gt;
                 &lt;/html&gt;
             """.format(user_info['name'])
-                            </code>
-                        </pre>
-                        <pre>
-                            <code>
+
+            return homepage_html</code></pre>
+                        <pre><code>
         def unit_test_render_homepage():
             user_info = make_user(name="Bob")
-            homepage = render_homepage(user_info['id'])
+            homepage_html = render_homepage(user_info['id'])
 
-            assert user_info['name'] in homepage
-            assert is_valid_html(homepage)
+            assert user_info['name'] in homepage_html
+            assert is_valid_html(homepage_html)
                             </code>
                         </pre>
                     </section>
@@ -86,10 +96,10 @@
                             <code>
         def unit_test_render_homepage():
             user_info = make_user(name="Bob")
-            homepage = render_homepage(user_info['id'])
+            homepage_html = render_homepage(user_info['id'])
 
-            assert user_info['name'] in homepage
-            assert is_valid_html(homepage)
+            assert user_info['name'] in homepage_html
+            assert is_valid_html(homepage_html)
                             </code>
                         </pre>
                         <ul>
@@ -104,11 +114,15 @@
         def render_homepage(user_id):
             user_info = get_user(user_id):
 
-            return """
+            homepage_html =  """
                 &lt;html&gt;
-                &lt;h1&gt;%s&lt;/h1&gt;
+                    &lt;body&gt;
+                        &lt;h1&gt;{0}&lt;/h1&gt;
+                    &lt;/body&gt;
                 &lt;/html&gt;
             """.format(user_info['name'])
+
+            return homepage_html
                             </code>
                         </pre>
                         <ul>
@@ -136,7 +150,11 @@
                         </ul>
                     </section>
                     <section>
-                        <h2>Levels of Integration</h2>
+                        <h2>Path of Integration</h2>
+                        <img src="assets/simple-nodes.jpg">
+                    </section>
+                    <section>
+                        <h2>Levels of Web Integration</h2>
                         <ol class="stack-table">
                             <li>Client Browser</li>
                             <li>Client OS</li>
@@ -164,8 +182,8 @@
                         <h2>Integration Testing</h2>
                         <ul>
                             <li>More high level</li>
-                            <li>Industry testing isn't science (CSC410 is science)</li>
                             <li>Use your best judgement when writing code</li>
+                            <li>Industry testing isn't science (CSC410 is science)</li>
                             <li>What are the corner cases that might break?</li>
                         </ul>
                     </section>
@@ -216,8 +234,8 @@
                 <section>
                     <h2>Test all user environments</h2>
                     <ul>
-                        <li>We want to test every browser</li>
                         <li>We want to test every feature</li>
+                        <li>We want to test every browser</li>
                         <li>We probably want to test every OS</li>
                     </ul>
                 </section>
@@ -296,7 +314,7 @@
                         <pre>
                             <code>
     @with_driver(DesiredCapabilities.FIREFOX)
-    def test_set_user_name(self, driver):
+    def do_selenium_stuff(self, driver):
         driver.get("http://yelp.com")
         driver.maximize_window()
         driver.refresh()
@@ -351,7 +369,7 @@
                     <section>
                         <h2>Let's Try More Complex Examples</h2>
                         <ul>
-                            <li>Test A Really Signup Flow</li>
+                            <li>Test a Signup Flow</li>
                             <li>Test that I actually graduated from CS</li>
                         </ul>
                     </section>
@@ -383,7 +401,11 @@
         <script type="text/javascript">
             Reveal.initialize({
                 history: true,
-                transition: 'linear'
+                transition: 'linear',
+                keyboard: {
+                    39: 'next',
+                    37: 'prev'
+                }
             });
             hljs.initHighlightingOnLoad();
         </script>

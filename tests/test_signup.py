@@ -10,7 +10,9 @@ class TestApplication(T.TestCase):
 
     @with_driver(
         DesiredCapabilities.FIREFOX,
-        DesiredCapabilities.CHROME
+        DesiredCapabilities.CHROME,
+        DesiredCapabilities.SAFARI,
+        DesiredCapabilities.OPERA,
     )
     def test_signup(self, driver):
         driver.get("http://localhost:5000/signup")

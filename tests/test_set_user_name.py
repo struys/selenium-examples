@@ -9,7 +9,9 @@ class TestApplication(T.TestCase):
 
     @with_driver(
         DesiredCapabilities.FIREFOX,
-        DesiredCapabilities.CHROME
+        DesiredCapabilities.CHROME,
+        DesiredCapabilities.SAFARI,
+        DesiredCapabilities.OPERA
     )
     def test_set_user_name(self, driver):
         driver.get("http://localhost:5000")

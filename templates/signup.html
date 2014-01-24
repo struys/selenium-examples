@@ -1,5 +1,39 @@
 <html>
-<head></head>
+<head>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 36px;
+        }
+
+        label {
+            display: block;
+            width: 100%;
+        }
+
+        input {
+            display: block;
+            font-size: 1em;
+        }
+
+        button {
+            font-size: 1em;
+            display: block;
+            width: 100%;
+            margin-top:20px;
+        }
+
+        .signup-form {
+            margin-left: auto;
+            margin-right:auto;
+            width: 400px;
+            margin-top:5em;
+        }
+
+    </style>
+
+
+</head>
 
 
 <body>
@@ -7,15 +41,20 @@
         <label>
             <span>Name:</span>
             <input name="name" type="text">
+        </label>
 
+        <label>
             <span>Email:</span>
             <input name="email" type="text">
+        </label>
 
+        <label>
             <span>Password:</span>
             <input name="password" type="password">
-
-            <button type="submit">Signup</button>
         </label>
+
+        <button type="submit">Signup</button>
+
     </form>
 </body>
 
