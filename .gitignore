@@ -7,4 +7,5 @@ test_venv
 *.DS_Store
 bower_components
 node_env
+node_modules
 assets/*.css

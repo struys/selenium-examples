@@ -14,7 +14,8 @@ test_venv: requirements.txt node_requirements.txt
 		pip install -r requirements.txt && \
 		pip install -e . && \
 		nodeenv node_env --requirement=node_requirements.txt && \
-		source activate && \
+		source node_env/bin/activate && \
+		npm install bower && \
 		bower install'
 
 scss: test_venv
@@ -40,10 +41,7 @@ create_fixtures: test_venv
 	bash -c "source test_venv/bin/activate && python create_fixtures.py"
 
 delete_fixtures:
-	if [ -a example.db ] ; \
-	then \
-		rm example.db  ; \
-	fi;
+	rm -f example.db
 
 clean: delete_fixtures
 	rm -rf test_venv
