@@ -16,6 +16,7 @@ test_venv: requirements.txt node_requirements.txt
 		nodeenv node_env --requirement=node_requirements.txt && \
 		source node_env/bin/activate && \
 		npm install bower && \
+		npm install node-sass && \
 		bower install'
 
 scss: test_venv
