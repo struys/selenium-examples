@@ -26,6 +26,9 @@ scss: test_venv
 			node-sass yelp_reveal.scss && \
 			node-sass presentation.scss"
 
+presentation: scss
+	firefox selenium_presentation.html &
+
 test_user_name: flakes test_venv
 	bash -c "source test_venv/bin/activate && \
 		testify tests.test_set_user_name"

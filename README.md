@@ -19,6 +19,12 @@ Setup the virtualenv for python/node and bower install libraries for presentatio
 make test_venv
 ```
 
+Show the presentation
+
+```
+make presentation
+```
+
 Start the Selenium Server
 
 ```
