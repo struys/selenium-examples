@@ -20,26 +20,35 @@ test_venv: requirements.txt node_requirements.txt
 		bower install'
 
 scss: test_venv
-	bash -c "source test_venv/bin/activate && cd assets && node-sass yelp_reveal.scss && node-sass presentation.scss"
+	bash -c "source test_venv/bin/activate && \
+		source node_env/bin/activate && \
+		cd assets && \
+			node-sass yelp_reveal.scss && \
+			node-sass presentation.scss"
 
 test_user_name: flakes test_venv
-	bash -c "source test_venv/bin/activate && testify tests.test_set_user_name"
+	bash -c "source test_venv/bin/activate && \
+		testify tests.test_set_user_name"
 
 test_signup: flakes test_venv
-	bash -c "source test_venv/bin/activate && testify tests.test_signup"
+	bash -c "source test_venv/bin/activate && \
+		testify tests.test_signup"
 
 test_rosi: flakes test_venv
-	bash -c "source test_venv/bin/activate && testify tests.test_rosi_login"
+	bash -c "source test_venv/bin/activate && \
+		testify tests.test_rosi_login"
 
 serve: flakes test_venv
-	bash -c "source test_venv/bin/activate && python selenium_examples/main.py"
+	bash -c "source test_venv/bin/activate && \
+		python selenium_examples/main.py"
 
 selenium_start:
 	bash -c "java -jar bin/selenium-server-standalone-2.39.0.jar \
 		-Dwebdriver.chrome.driver=bin/chromedriver"
 
 create_fixtures: test_venv
-	bash -c "source test_venv/bin/activate && python create_fixtures.py"
+	bash -c "source test_venv/bin/activate && \
+		python create_fixtures.py"
 
 delete_fixtures:
 	rm -f example.db
