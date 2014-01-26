@@ -1,9 +1,9 @@
-.PHONY: flakes tests clean
+.PHONY: all flakes tests clean scss presentation
 
 all: flakes
 
 flakes:
-	pyflakes tests setup.py
+	pyflakes selenium_examples tests setup.py
 
 test_venv: requirements.txt node_requirements.txt
 	rm -rf test_venv
@@ -19,12 +19,7 @@ test_venv: requirements.txt node_requirements.txt
 		npm install node-sass && \
 		bower install'
 
-scss: test_venv
-	bash -c "source test_venv/bin/activate && \
-		source node_env/bin/activate && \
-		cd assets && \
-			node-sass yelp_reveal.scss && \
-			node-sass presentation.scss"
+scss: assets/yelp_reveal.css assets/presentation.css
 
 presentation: scss
 	firefox selenium_presentation.html &
@@ -61,3 +56,7 @@ clean: delete_fixtures
 	rm -rf node_env
 	find . -iname '*.pyc' -delete
 
+%.css: %.scss test_venv
+	bash -c "source test_venv/bin/activate && \
+		source node_env/bin/activate && \
+		node-sass $^ -o $@"
