@@ -22,7 +22,8 @@ test_venv: requirements.txt node_requirements.txt
 scss: assets/yelp_reveal.css assets/presentation.css
 
 presentation: scss
-	firefox selenium_presentation.html &
+	(which google-chrome && google-chrome selenium_presentation.html) || \
+	(which firefox && firefox selenium_presentation.html) &
 
 test_user_name: flakes test_venv
 	bash -c "source test_venv/bin/activate && \
