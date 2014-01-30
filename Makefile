@@ -45,6 +45,10 @@ selenium_start:
 	bash -c "java -jar bin/selenium-server-standalone-2.39.0.jar \
 		-Dwebdriver.chrome.driver=bin/chromedriver"
 
+selenium_start_linux:
+	bash -c "java -jar bin/selenium-server-standalone-2.39.0.jar \
+		-Dwebdriver.chrome.driver=bin/chromedriver-linux"
+
 create_fixtures: test_venv
 	bash -c "source test_venv/bin/activate && \
 		python create_fixtures.py"
